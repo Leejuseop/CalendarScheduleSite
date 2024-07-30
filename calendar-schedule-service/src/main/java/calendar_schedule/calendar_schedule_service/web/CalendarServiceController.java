@@ -25,10 +25,14 @@ public class CalendarServiceController {
         return "join.html";
     }
 
-    @PostMapping("html/join.html")
+    @PostMapping("/html/join.html") //Getmapping으로 join.html을 들어가서 post로 폼을 전송하면 html코드의 action태그에 붙은 URL로 이동이됨. 근데 포스트 방식으로 받은 URL이니깐 이 함수가 호출.
     public String joinCustomer(Customer customer){
         customerRepository.saveCustomer(customer);
-        return "index.html";
+        return "saved.html";
     }
 
+    @GetMapping("/html/saved.html")
+    public String savedForm(){
+        return "saved.html";
+    }
 }
