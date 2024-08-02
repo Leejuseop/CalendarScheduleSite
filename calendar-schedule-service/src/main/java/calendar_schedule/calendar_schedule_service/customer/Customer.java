@@ -6,10 +6,12 @@ import lombok.Data;
 public class Customer {
     private String customerId;
     private int customerPw;
+    private Long customerSequence;
 
-    public Customer(String customerId, int customerPw){
+    public Customer(String customerId, int customerPw, Long customerSequence){
         this.customerId = customerId;
         this.customerPw = customerPw;
+        this.customerSequence = customerSequence;
     }
 
     public Customer(){
