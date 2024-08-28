@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import calendar_schedule.calendar_schedule_service.customer.Customer;
 import calendar_schedule.calendar_schedule_service.repository.CustomerRepository;
+import calendar_schedule.calendar_schedule_service.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,7 +19,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class CalendarServiceController {
     
-    private final CustomerRepository customerRepository;   
+    // private final CustomerRepository customerRepository; // 야 근데 이건 객체 생성은 안하고 변수 선언만 해놓고 어떻게 사용할수가 있는거임??
+    private final CustomerRepository customerRepository = new CustomerRepository();
+    private final LoginService loginService = new LoginService(customerRepository);
 
     @GetMapping("/html/login.html")
     public String loginForm(){
@@ -48,4 +51,16 @@ public class CalendarServiceController {
 
         return "customers";
     }
+
+    @PostMapping("/html/calender.html")
+    public String calenderForm(Customer customer){
+        if(loginService.certifyLoginInfo(customer) == true){
+            return "calender";
+        }
+        else{
+            return "wrongInfo";
+        }
+    }
+
+    
 }

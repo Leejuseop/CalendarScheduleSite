@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://ww.thymleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <link href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+        <style>
+            .container {
+                max-width: 560px;
+            }
+        </style>
+        <title>로그인 실패</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="py-5 text-center">
+                <h2>아이디 또는 비밀번호가 잘못되었습니다</h2>
+            </div>
+            <div class="col">
+                    <button class="w-100 btn btn-primary btn-lg" onclick="location.href='/html/login.html'">다시 로그인하기</button>
+            </div>
+            </form>
+        </div>
+    </body>
+</html>

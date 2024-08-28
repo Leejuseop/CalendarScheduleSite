@@ -11,23 +11,23 @@ import calendar_schedule.calendar_schedule_service.customer.Customer;
 
 @Repository
 public class CustomerRepository {
-    private static final Map<Long, Customer> store = new HashMap<>();
+    private static final Map<String, Customer> store = new HashMap<>();  //<CustomerId, customer>
     private Long customerSequence = 0L;
-
-    public CustomerRepository(){
-
-    }
 
     public void saveCustomer(Customer customer){
         customer.setCustomerSequence(++customerSequence);
-        store.put(customer.getCustomerSequence(), customer);
+        store.put(customer.getCustomerId(), customer);
     }
 
-    public Customer findCustomerById(Long customerSequence){
-        return store.get(customerSequence);
+    public Customer findCustomerById(String customerId){
+        return store.get(customerId);
     }
 
     public List<Customer> findCustomerAll(){
         return new ArrayList<>(store.values());
+    }
+
+    public boolean checkCustomerIdExist(Customer customer){
+        return store.containsKey(customer.getCustomerId());
     }
 }
